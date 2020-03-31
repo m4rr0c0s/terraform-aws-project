@@ -1,7 +1,9 @@
 #-----general-----
+
 region      = "us-east-1"
 
 #-----storage-----
+
 bucket_name = "marrocos-bucket"
 s3_tags     = {
     Terraform   = "true"
@@ -9,6 +11,7 @@ s3_tags     = {
 }
 
 #-----networking-----
+
 vpc_cidr             = "10.10.0.0/16"
 public_sg_allowed_ip = ["0.0.0.0/0"]
 
@@ -59,6 +62,7 @@ public_sg_tags = {
 }
 
 #-----compute-----
+
 keyname         = "mykey"
 public_key_path = "/home/gabriel/.ssh/mykey.pub"
 instance_count  = 2
