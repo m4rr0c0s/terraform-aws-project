@@ -44,3 +44,19 @@ variable "public_sg_tags" {
   description = "The tags of the public security group"
   type        = map(string)
 }
+
+variable "service_port" {
+  description = "Define the services allowed in the security group"
+  default     = [
+    {
+      description = "SSH",
+      from_port   = "22",
+      to_port     = "22"
+    },
+    {
+      description = "HTTP",
+      from_port   = "80",
+      to_port     = "80"
+    }
+  ]
+}

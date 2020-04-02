@@ -20,6 +20,10 @@ output "Public_Security_Group" {
   value = module.networking.public_sg
 }
 
+output "Ingress_Port_Mapping" {
+  value = module.networking.ingress_port_mapping
+}
+
 #---Compute Outputs ------
 
 output "Public_Instance_IDs" {
@@ -29,3 +33,4 @@ output "Public_Instance_IDs" {
 output "Public_Instance_IPs" {
   value = module.compute.server_ip
 }
+

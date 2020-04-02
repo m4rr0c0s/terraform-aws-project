@@ -50,20 +50,20 @@ resource "aws_security_group" "public_sg" {
   description = "used for access to the public instances"
   vpc_id      = aws_vpc.vpc.id
 
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.public_sg_allowed_ip
-  }
+  dynamic "ingress" {
+    for_each = [ for s in var.service_port: {
+      description = s.description
+      from_port   = s.from_port
+      to_port     = s.to_port
+    }]
 
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = var.public_sg_allowed_ip
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = "tcp"
+      cidr_blocks = var.public_sg_allowed_ip
+    }
   }
 
   egress {
